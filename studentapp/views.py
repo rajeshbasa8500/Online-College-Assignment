@@ -136,6 +136,7 @@ def student_manage_assignment(request):
     student = request.session['student_id']
     b = StudentRegisterModel.objects.get(student_id=student)
     c = b.course
+    print(c)
     a = AddAssignmentModel.objects.filter(course=c).order_by('-assignment_id')
     print(a)
     for i in a:
