@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<title>this is a website</title>
+<head>
+<style>
+ #example1{
+     background-image: url(rajesh.jpg), url(rajesh.jpg);
+    background-position: right bottom, left top;
+    background-repeat: no-repeat, repeat;
+    padding: 15px;
+ }
+ #example2{
+    background-image: url(rajesh8.jpg), url(rajesh8.jpg);
+    background-position: right bottom, left top;
+    background-repeat: no-repeat, repeat;
+    padding: 15px;
+ }
+</style>
+</head>
+<body>
+  <center> 
+  <h1> <div> VIDYA HIGH SCHOOL </div> </h1> 
+  </center>
+  <h2>    <div align="left">
+                      <a href="https://www.vidya school.com">HOME</a> |
+                      <a href="https://www.vidya school.com">ABOUT</a>|
+					  <a href="https://www.vidya school.com">HELP</a>
+	      </div>
+  </h2>		  
+       <p></p>   
+</body>
+</html>

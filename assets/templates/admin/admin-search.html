@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>ONLINE COLLEGE ASSIGNMENT</title>
+    <link rel="stylesheet" href="{% static 'admin/vendors/mdi/css/materialdesignicons.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/vendors/flag-icon-css/css/flag-icon.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/vendors/css/vendor.bundle.base.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/vendors/font-awesome/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/css/style.css' %}" />
+    <link rel="shortcut icon" href="{% static 'admin/images/favicon.png' %}" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
+          <h1 class="sidebar-brand brand-logo" href="">ADMIN</h1>
+          
+        </div>
+        
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+             
+               </a>
+          </li>
+          <p class="px-3">Main</p>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_dashboard' %}">
+              <img src="https://img.icons8.com/office/26/undefined/home-office.png"/> &nbsp; &nbsp;
+              <span class="menu-title active">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_course' %}">
+              <img src="https://img.icons8.com/office/26/undefined/activity-feed.png"/>  &nbsp; &nbsp;
+              <span class="menu-title">Course</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_subject' %}">
+              <img src="https://img.icons8.com/office/26/undefined/address-book.png"/>  &nbsp; &nbsp;
+              <span class="menu-title">Subject</span>
+            </a>
+          </li>
+          <p class="px-3">Apps</p>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <img src="https://img.icons8.com/color/27/undefined/test-account.png"/> &nbsp; &nbsp;
+              <span class="menu-title">Teacher</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'admin_add_teacher' %}" >Add Teacher</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'admin_manage_teacher' %}">Manage Teacher</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_announcement_news' %}">
+              <img src="https://img.icons8.com/office/28/undefined/communication.png"/> &nbsp; &nbsp; 
+              <span class="menu-title">Annoucement/News</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic-1" aria-expanded="false" aria-controls="ui-basic-1">
+              <img src="https://img.icons8.com/office/28/undefined/multiple-inputs.png"/>  &nbsp; &nbsp;
+              <span class="menu-title">Uplaoded Assignment</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic-1">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'admin_unchecked' %}">Un Checked</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'admin_checked' %}">Checked</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_b_w_dates_assignment' %}">
+              <img src="https://img.icons8.com/office/25/undefined/overtime.png"/> &nbsp; &nbsp;
+              <span class="menu-title pt-2">B/w dates Assignment<br>report</span>
+              
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_search' %}">
+              <img src="https://img.icons8.com/wired/25/undefined/search.png"/> &nbsp; &nbsp;
+              <span class="menu-title">Search</span>
+            </a>
+          </li>  
+        </ul>
+      </nav>
+       <div class="container-fluid page-body-wrapper">
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close mdi mdi-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-default-theme">
+            <div class="img-ss rounded-circle bg-light border mr-3"></div> Default
+          </div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme">
+            <div class="img-ss rounded-circle bg-dark border mr-3"></div> Dark
+          </div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles light"></div>
+            <div class="tiles dark"></div>
+          </div>
+        </div>
+        {% comment %} <ul class="navbar-nav">
+           
+          <li class="nav-item nav-search border-0 ml-1 ml-md-3 ml-lg-5 d-none d-md-flex">
+            <form class="nav-link form-inline mt-2 mt-md-0" method="post">
+              {% csrf_token %} 
+              <div class="input-group">
+                <input type="search" name='search' class="form-control" placeholder="Search" />
+               
+                <button class="input-group-append" type="submit" >
+                  <span class="input-group-text">
+                    <i class="mdi mdi-magnify"></i>
+                  </span>
+                </button>
+              </div>
+            </form>
+          </li>
+        </ul> {% endcomment %}
+        <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
+          <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
+            <a class="navbar-brand brand-logo-mini align-self-center d-lg-none" href="index.html"><img src="{% static 'admin/images/logo-mini.svg' %}" alt="logo" /></a>
+            <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
+              <i class="mdi mdi-menu"></i>
+            </button>
+          
+            <ul class="navbar-nav navbar-nav-right ml-lg-auto">
+             
+              <li class="nav-item nav-profile dropdown border-0">
+                <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
+                  <img class="nav-profile-img mr-2" alt="" src="https://img.icons8.com/color/48/000000/head-profile.png"/>
+                  <span class="profile-name">Admin</span>
+                </a>
+                <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
+                 
+                  
+                    <a class="dropdown-item" href="{% url 'index' %}">
+                      <i class="mdi mdi-logout mr-2 text-primary"></i> Logout </a>
+                   
+                  </div>
+              </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-menu"></span>
+            </button>
+          </div>
+        </nav>
+        
+        <!--mainpanel start-->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="page-header" style="background-color:white;">
+                    <h3 class="page-title px-3">Search</h3>
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Search</li>
+                      </ol>
+                    </nav>
+                  </div>
+                  <div class="row">
+                    <div class="col-6 grid-margin">
+                      <form class="input-group" action="" method="POST">
+                          {% csrf_token %}
+                          <div class="input-group">
+                            <input type="text" class="form-control rounded" name='search' placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                            <button type="submit" name='btn' class="btn btn-outline-primary">search</button>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row">  
+                    <div class="col-md-12 grid-margin stretch-card">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h3 class="card-title">Assignments</h3>
+                                  <br>
+                                  <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                      <thead>
+                                        <tr>
+                                          <th>S.No</th>
+                                         <th>Branch Name</th>
+                                          <th>Subject</th>
+                                          <th>Posting date</th>
+                                          <th>last date</th>
+                                          <th>Marks</th>
+                                         
+                                        </tr> 
+                                      </thead>
+                                      <tbody>
+                                        {% for i in data %}
+                                        <tr>
+                                          <td>{{i.assignment_id}}</td>
+                                          <td>{{i.course.branch_name}}</td>
+                                          <td>{{i.subject}}</td>
+                                          <td>{{i.posting_date|date:"d-m-Y"}}</td>
+                                          <td>{{i.last_date|date:"d-m-Y" }}</td>
+                                          <td>{{i.assignment_marks}}</td>
+                                      
+                                        
+                                      </tr>
+                                      {% endfor %}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>   
+                      </div>
+                    
+              </div> 
+          <!--footer start-->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center ">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">© 2022 All Copyright Reserved by
+               <a href="https://www.bootstrapdash.com/" target="_blank">Codebook.in</a></span>
+            </div>
+         </footer>
+        </div>
+        <!-- main-panel ends -->
+    
+      
+    </div>
+    <!-- container-scroller -->
+     <!-- plugins:js -->
+     <script src="{% static 'admin/vendors/js/vendor.bundle.base.js' %}"></script>
+     <!-- endinject -->
+     <!-- Plugin js for this page -->
+     <script src="{% static 'admin/vendors/chart.js/Chart.min.js' %}"></script>
+     <script src="{% static 'admin/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+     <script src="{% static 'admin/vendors/flot/jquery.flot.js' %}"></script>
+     <script src="{% static 'admin/vendors/flot/jquery.flot.resize.js' %}"></script>
+     <script src="{% static 'admin/vendors/flot/jquery.flot.categories.js' %}"></script>
+     <script src="{% static 'admin/vendors/flot/jquery.flot.fillbetween.js' %}"></script>
+     <script src="{% static 'admin/vendors/flot/jquery.flot.stack.js' %}"></script>
+     <script src="{% static 'admin/vendors/flot/jquery.flot.pie.js' %}"></script>
+     <!-- End plugin js for this page -->
+     <!-- inject:js -->
+     <script src="{% static 'admin/js/off-canvas.js' %}"></script>
+     <script src="{% static 'admin/js/hoverable-collapse.js' %}"></script>
+     <script src="{% static 'admin/js/misc.js' %}"></script>
+     <!-- endinject -->
+     <!-- Custom js for this page -->
+     <script src="{% static 'admin/js/dashboard.js' %}"></script>
+     <!-- End custom js for this page -->
+   </body>
+ </html>

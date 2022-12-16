@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>ONLINE COLLEGE ASSIGNMENT</title>
+    <link rel="stylesheet" href="{% static 'admin/vendors/mdi/css/materialdesignicons.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/vendors/flag-icon-css/css/flag-icon.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/vendors/css/vendor.bundle.base.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/vendors/font-awesome/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/css/style.css' %}" />
+    <link rel="shortcut icon" href="{% static 'admin/images/favicon.png' %}" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript"> 
+      function loginvalidation(){ 
+           
+          var passw=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,16}$/; 
+          var mailformat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/; 
+          var NamE=  document.myform.remark 
+          var Branch1 = document.myform.marks
+         
+          if (NamE.value==""){ 
+              alert("Please Enter The Remark field:"); 
+              NamE.focus(); 
+              return false; 
+          }  
+  
+          if (Branch1.value==""){ 
+            alert("Please Enter the Student Marks:"); 
+            Branch1.focus(); 
+            return false; 
+          } 
+          
+          if (gender1.value==""){ 
+            alert("Please Enter Assignment No :"); 
+            gender1.focus(); 
+            return false; 
+          }
+
+          
+          if (Email1.value==""){ 
+            alert("Please Enter Assignment Description :"); 
+            Email.focus(); 
+            return false; 
+          }
+          
+          if (mobileno1.value==""){ 
+            alert("Please Choose LastDate of Submission:"); 
+            mobileno1.focus(); 
+            return false; 
+          }
+  
+          if (address.value==""){ 
+            alert("Please Enter Assignment Marks:"); 
+            address.focus(); 
+            return false; 
+          }
+          
+          if (photo1.value==""){ 
+              alert("Please Add Assignment File:"); 
+              photo1.focus(); 
+              return false; 
+          }      
+       
+          return true;    
+      } 
+   </script>
+  </head>
+
+<body>
+  {% csrf_token %}
+              {% if messages %}              
+              {% for message in messages %}
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+						<script>swal({
+						  title: "Error!",
+						  text: "{{message}}",
+						  icon: "warning",
+						  button: "OK",
+						});
+					  </script>
+					 
+					{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+						<script>swal({
+						  title: "Success :)",
+						  text: "{{message}}",
+						  icon: "success",
+						  button: "OK",
+						});
+					  </script>
+					{% endif %}              
+				  {% endfor %} 
+				 {% endif %}
+    <div class="container-scroller">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
+          <h1 class="sidebar-brand brand-logo" href="">TEACHER </h1>
+          
+        </div>
+        
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+             
+               </a>
+          </li>
+          <p class="px-3">Main</p>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'teacher_dashboard'%}">
+              <img src="https://img.icons8.com/office/26/undefined/home-office.png"/> &nbsp; &nbsp;
+              <span class="menu-title active">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <img src="https://img.icons8.com/office/26/undefined/activity-feed.png"/>  &nbsp; &nbsp;
+              <span class="menu-title">Assignment</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'teacher_add_assignment'%}" >Add Assignment</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'teacher_manage_assignment'%}">Manage Assignment</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'teacher_announcement_news'%}">
+              <img src="https://img.icons8.com/office/28/undefined/communication.png"/> &nbsp; &nbsp;
+              <span class="menu-title">Annoucement/News</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic-1" aria-expanded="false" aria-controls="ui-basic-1">
+              <img src="https://img.icons8.com/office/28/undefined/multiple-inputs.png"/>  &nbsp; &nbsp;
+              <span class="menu-title">Uploaded Assignment</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic-1">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'teacher_unchecked'%}" >Un Checked</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'teacher_checked'%}">Checked</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'teacher_subject_wise_report'%}">
+              <img src="https://img.icons8.com/office/25/undefined/overtime.png"/> &nbsp; &nbsp;
+              <span class="menu-title">Subject Wise Report</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'teacher_reg_user'%}">
+              <img src="https://img.icons8.com/color/27/undefined/test-account.png"/> &nbsp; &nbsp;
+              <span class="menu-title">Reg User</span>
+            </a>
+          </li> 
+        </ul>
+      </nav>
+       <div class="container-fluid page-body-wrapper">
+        
+        <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
+          <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
+            <a class="navbar-brand brand-logo-mini align-self-center d-lg-none" href=""><img src="{% static 'admin/images/logo-mini.svg' %}" alt="logo" /></a>
+            <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
+              <i class="mdi mdi-menu"></i>
+            </button>
+            <ul class="navbar-nav">
+              <li class="nav-item nav-search border-0 ml-1 ml-md-3 ml-lg-5 d-none d-md-flex">
+                <form class="nav-link form-inline mt-2 mt-md-0">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="mdi mdi-magnify"></i>
+                      </span>
+                    </div>
+                  </div>
+                </form>
+              </li>
+            </ul>
+            <ul class="navbar-nav navbar-nav-right ml-lg-auto">
+             
+              <li class="nav-item nav-profile dropdown border-0">
+                <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
+                  <img class="nav-profile-img mr-2" alt="" src="https://img.icons8.com/external-nawicon-flat-nawicon/48/000000/external-teacher-back-to-school-nawicon-flat-nawicon.png" />
+                  <span class="profile-name">TEACHER</span>
+                </a>
+                <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
+                  <a class="dropdown-item" href="{% url 'teacher_profile'%}">
+                    <i class="mdi mdi-cached mr-2 text-success"></i> Profile </a>
+                 
+                    
+                    <a class="dropdown-item" href="{% url 'index'%}">
+                      <i class="mdi mdi-logout mr-2 text-primary"></i> Logout </a>
+                  </div>
+              </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-menu"></span>
+            </button>
+          </div>
+        </nav>
+        <div class="main-panel">
+          <div class="content-wrapper">
+                <div class="page-header" style="background-color:white;">
+                    <h3 class="page-title px-3"> Checked Assignment</h3>
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"> Checked Assignment </li>
+                      </ol>
+                    </nav>
+                </div>
+                <div class="row">  
+                  <form method="POST" enctype="multipart/form-data" onsubmit = "return loginvalidation()"  name="myform">
+                    {% csrf_token %}
+                    <div class="col-md-12 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body">
+                          <h3 class="card-title">Assignment Number:  {{a.assign.assignment_title}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   Marks:{{a.assign.assignment_marks}} </h3>
+                          <br>
+                          <div class="table-responsive">
+                            <table class="table table-bordered">               
+                              <tr>
+                                <td  colspan="4" style="color:rgb(3, 3, 94);"> <center>Submitted By &nbsp;&nbsp;&nbsp;{{a.submited_student.student_name}} </center></td>         
+                              </tr>       
+                              <tr>
+                                <th>Course</th>
+                                <td>{{a.assign.course.branch_name}}</td>
+                                <th>Subject Name</th>
+                                <td>{{a.assign.subject}}</td>
+                              </tr>
+                              <tr>
+                                <th>Assignment Description</th>
+                                <td>{{a.assign.assignment_description }}</td>
+                                <th>Assignment code</th>
+                                <td>{{a.assign.assignment_title}}</td>
+                              </tr>
+                              <tr>
+                                <th>Student Rollno</th>
+                                <td>{{a.submited_student.student_rollno}}</td>
+                                <th>Last Date of Submission</th>
+                                <td>{{a.assign.last_date|date:"d-m-Y" }}</td>
+                              </tr>
+                              <tr>
+                                <th>View Assignment Paper</th>
+                                <td colspan="4"  style="color: red;"><center><a href="{{a.assign.assignment_file.url}}" View>{{a.assign.assignment_file}}</a></center></td>
+                              </tr>
+                            </table>
+                              <br> <br><br><br>
+                            <table class="table table-bordered">              
+                              <tr>
+                                  {% comment %} <td  colspan="4" style="color:rgb(3, 3, 94);"> <center>{{a.assignment_file}}</center></td>
+                                  {% endcomment %}
+                              </tr>        
+                              <tr>
+                                <th>Assignment Description</th>
+                                <td colspan="3">{{a.text}}</td>
+                              </tr>
+                              <tr>
+                                <th>View Submited Answer Paper</th>
+                                <td><a href="{{a.myfile.url}}" View>{{a.myfile}}</a></td>
+                                <th>Submitted Date</th>
+                                <td>{{a.submited_date|date:"d-m-Y" }}</td>
+                              </tr>         
+                            </table>
+                            <table class="table table-bordered">
+                              <tr>
+                                <th colspan="4">Remarks</th>
+                                <td> <textarea rows="8" cols="90" name="remark" placeholder="Enter Your Feedback Here..."> {{da.remarks}}</textarea> </td>
+                              </tr>
+                              <tr>
+                                <th colspan="4">Marks</th>
+                                <td><textarea rows="4" cols="90" name="marks" placeholder="Enter Your Feedback Here..."> {{da.marks}}</textarea> </td>
+                              </tr>                                     
+                            </table>
+                            <table class="table table-bordered">
+                              <tr>
+                                <td colspan="4" >
+                                   <center>
+                                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                  </center>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>         
+                  </form>
+                </div>
+          </div>
+          <!--footer start-->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center ">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">© 2022 All Copyright Reserved by
+               <a href="https://www.bootstrapdash.com/" target="_blank">Codebook.in</a></span>
+            </div>
+          </footer>
+        </div>
+
+        <!-- main-panel ends -->
+     
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+   <!-- plugins:js -->
+   <script src="{% static 'admin/vendors/js/vendor.bundle.base.js' %}"></script>
+   <!-- endinject -->
+   <!-- Plugin js for this page -->
+   <script src="{% static 'admin/vendors/chart.js/Chart.min.js' %}"></script>
+   <script src="{% static 'admin/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+   <script src="{% static 'admin/vendors/flot/jquery.flot.js' %}"></script>
+   <script src="{% static 'admin/vendors/flot/jquery.flot.resize.js' %}"></script>
+   <script src="{% static 'admin/vendors/flot/jquery.flot.categories.js' %}"></script>
+   <script src="{% static 'admin/vendors/flot/jquery.flot.fillbetween.js' %}"></script>
+   <script src="{% static 'admin/vendors/flot/jquery.flot.stack.js' %}"></script>
+   <script src="{% static 'admin/vendors/flot/jquery.flot.pie.js' %}"></script>
+   <!-- End plugin js for this page -->
+   <!-- inject:js -->
+   <script src="{% static 'admin/js/off-canvas.js' %}"></script>
+   <script src="{% static 'admin/js/hoverable-collapse.js' %}"></script>
+   <script src="{% static 'admin/js/misc.js' %}"></script>
+   <!-- endinject -->
+   <!-- Custom js for this page -->
+   <script src="{% static 'admin/js/dashboard.js' %}"></script>
+   <!-- End custom js for this page -->
+ </body>
+</html>

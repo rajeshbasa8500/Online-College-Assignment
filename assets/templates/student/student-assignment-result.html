@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+  {% load static %}
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+  
+    <title>ONLINE COLLEGE ASSIGNMENT</title>
+  
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css"   href="{% static 'main/css/bootstrap.css' %}" />
+    <!-- fonts style -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap"  />
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}"/>
+    <!-- responsive style -->
+    <link rel="stylesheet" href="{% static 'main/css/responsive.css' %}" />
+  </head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="">
+            <h3>
+              Online College
+            </h3>
+            <span> Assignments</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+            <ul class="navbar-nav  ml-auto">
+              <li class="nav-item ">
+                <a class="nav-link" href="{% url 'student_dashboard' %}">Dashboard</a>
+              </li>&nbsp;&nbsp;
+              <li class="nav-item ">
+                <a class="nav-link" href="{% url 'student_manage_assignment' %}">Manage Assignments</a>
+              </li>&nbsp;&nbsp;
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'student_new_assignments' %}">Assignment result</a>
+              </li>&nbsp;&nbsp;
+              
+              {% comment %} <li class="nav-item">
+                <a class="nav-link" href="{% url 'student_upload1_assignments' %}">Uploaded Assignments </a>
+              </li> {% endcomment %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'student_annoucements' %}">Annoucements</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+              <button type="button" class="btn" style="background-color:rgb(220, 231, 233);"><a href="{% url 'index' %}">LogOut</a></button>
+            </form>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+   
+    <!-- end slider section -->
+  
+  <!-- special section -->
+
+ 
+
+  <!-- end special section -->
+
+  <!-- about section -->
+
+
+  <!-- end about section -->
+
+  <!-- course section -->
+
+ 
+
+  <!-- end course section -->
+
+  <!-- login section -->
+
+
+  <!-- end login section -->
+
+  <!-- event section -->
+  <section class="event_section layout_padding" style="background-color:white">
+    <div class="container">
+      <div class="content-wrapper">
+        <div class="page-header" style="background-color:white;">
+          <h3  style="background-color:rgba(74, 243, 206, 0.904); ">Your Assignment Result</h3>
+          <br> <br> 
+          <div class="row">  
+            <div class="col-md-12 grid-margin stretch-card">
+                      <div class="card">
+                        
+                        
+                        <form class="form-sample" method="post" enctype='multipart/form-data'>
+                          {% csrf_token %}
+                        <div class="card-body " >
+                          <h3 class="card-title">Assignment Number: {{i.assignment_title}}</h3>
+                          <br>
+                          <div class="table-responsive">
+                            <table class="table table-bordered" >
+                                {% comment %} <tr>
+                                 <td  colspan="4" style="color:rgb(3, 3, 94);"> <center>Submitted By Test S(Roll Number 1234) </center></td>
+                                </tr> {% endcomment %}
+                                <tr>
+                                  <th colspan="4"  row="4">Course</th>
+                                  <td>{{i.course.branch_name}}</td>
+                                  <th colspan="4">Subject Name</th>
+                                  <td>{{i.subject}}</td>
+                                </tr>
+                                <tr>
+                                  
+                                  
+                                </tr>
+                                
+                                
+                              
+                                <tr>
+                                  <th class="pt-5" >Remarks</th>
+                                  <td colspan="4">
+                                   <textarea readonly>{{f.remarks}}</textarea>
+                                   
+                                  </td>
+                                  <th class="pt-4 ">Marks</th>
+                                  <td colspan="4"> 
+                                    <textarea readonly>{{f.marks}} OUTOF {{i.assignment_marks}}</textarea>
+                                  </td>
+                                  
+                                    
+                                 
+                                </tr>
+                                
+                                
+                            </table>
+                            <table>
+                             <tr >
+                              
+                              <td colspan="4" style="padding-left:480px">
+                              {% if f.marks >= 75 %}
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/color-glass/100/000000/gold-medal.png"/><br>Well Done Keep it Up
+                               {% endif %}
+
+                              {% if f.marks <= 75 %}
+                              <img src="https://img.icons8.com/color/100/000000/olympic-medal-silver.png"/>
+                              {% else %}
+                    
+                              {% if f.marks <= 35   %}
+                              <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/100/000000/external-motivation-achievements-flaticons-lineal-color-flat-icons-2.png"/>Keep Work Hard {% endif %}
+                              
+
+                              {% endif %}
+                            </td> 
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                           
+                      </form>
+                      </div>
+                     
+                    </div>   
+              </div>
+      </div> 
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+  </section>
+
+  <!-- end event section -->
+
+  <!-- client section -->
+
+ 
+
+  <!-- end client section -->
+
+  <!-- contact section -->
+
+
+  <!-- end contact section -->
+
+  <!-- info section -->
+  <section class="info_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_menu">
+            <h5>
+              QUICK LINKS
+            </h5>
+            <div class="collapse navbar-collapse ml-auto px-5" id="navbarSupportedContent">
+              <ul class="navbar-nav  ml-auto">
+                <li class="nav-item active px-2">
+                  <a class="nav-link active" href="{% url 'index' %}">Home </a>
+                </li>
+                <li class="nav-item px-3">
+                  <a class="nav-link " href="{% url 'teacher_login' %} "> Teacher</a>
+                </li>
+                <li class="nav-item px-3 ">
+                  <a class="nav-link" href="{% url 'student_login' %}"> Student </a>
+                </li>
+                <li class="nav-item px-3">
+                  <a class="nav-link" href="{% url 'admin_login' %}"> Admin </a>
+                </li>
+               
+              </ul>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          
+        </div>
+        <div class="col-md-5 offset-md-1">
+          <div class="info_news">
+            <h5>
+              FOR ANY QUERY, PLEASE WRITE TO US
+            </h5>
+            <div class="info_contact">
+              <a href="">
+                Location
+              </a>
+              <a href="">
+                demo@gmail.com
+              </a>
+              <a href="">
+                Call : +01 1234567890
+              </a>
+            </div>
+            <form action="">
+              <input type="text" placeholder="Enter Your email" />
+              <button>
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info section -->
+
+  <!-- footer section -->
+  <footer class="container-fluid footer_section">
+    <p>
+      &copy; 2022 All Rights Reserved By
+      <a href="https://www.codebook.in/" style="color:blue;">Codebook.in</a>
+    </p>
+  
+  </footer>
+
+   
+  <footer class="container-fluid footer_section">
+  
+    
+  </footer>
+ 
+  <!-- footer section -->
+
+  <script type="text/javascript" src="{% static 'main/js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'main/js/bootstrap.js' %}"></script>
+
+</body>
+
+</html>

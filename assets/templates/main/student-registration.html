@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+  {% load static %}
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+  
+    <title>ONLINE COLLEGE ASSIGNMENT</title>
+  
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css"   href="{% static 'main/css/bootstrap.css' %}" />
+    <!-- fonts style -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap"  />
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}"/>
+    <!-- responsive style -->
+    <link rel="stylesheet" href="{% static 'main/css/responsive.css' %}" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript"> 
+      function loginvalidation(){ 
+          var Email = document.myform.email 
+          var passw=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,16}$/; 
+          var mailformat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/; 
+          var NamE=  document.myform.studentname 
+          var Branch1 = document.myform.rollno
+          var gender1 = document.myform.course
+          var mobileno1 = document.myform.mobileno 
+          var address = document.myform.password 
+          var photo1 = document.myform.file 
+           
+          if (NamE.value==""){ 
+              alert("Please Enter Student Name:"); 
+              NamE.focus(); 
+              return false; 
+          }  
+  
+          if (Branch1.value==""){ 
+            alert("Please Enter RollNO:"); 
+            Branch1.focus(); 
+            return false; 
+          } 
+          
+          if (gender1.value=="select"){ 
+            alert("Please Select Course:"); 
+            gender1.focus(); 
+            return false; 
+          }
+          
+          if (mobileno1.value==""){ 
+            alert("Please Enter Mobileno:"); 
+            mobileno1.focus(); 
+            return false; 
+          }
+
+          if (Email.value==""){ 
+            alert("Please Enter Email:"); 
+            Email.focus(); 
+            return false; 
+          }
+  
+          if (address.value==""){ 
+            alert("Please Create Your Password:"); 
+            address.focus(); 
+            return false; 
+          }
+          
+          if (photo1.value==""){ 
+              alert("Please Select Student Photo:"); 
+              photo1.focus(); 
+              return false; 
+          }      
+       
+          if (mobileno1.value.length != 10) { 
+  
+            alert("please Enter valid Mobile number"); 
+             
+            return false; 
+             
+        } 
+     
+        if (mobileno1.value.length <= 0) { 
+     
+            alert("Please Enter Mobile Number"); 
+     
+            return false; 
+        } 
+  
+  
+         if(!Email.value.match(mailformat)){ 
+            alert("Invalid Email format");   
+            Email.focus();             
+          return false; 
+          }    
+    
+  
+     
+          return true;    
+      } 
+   </script>
+  </head>
+
+<body>
+  {% csrf_token %}
+              {% if messages %}              
+              {% for message in messages %}
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+						<script>swal({
+						  title: "Error!",
+						  text: "{{message}}",
+						  icon: "warning",
+						  button: "OK",
+						});
+					  </script>
+					 
+					{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+						<script>swal({
+						  title: "Success :)",
+						  text: "{{message}}",
+						  icon: "success",
+						  button: "OK",
+						});
+					  </script>
+					{% endif %}              
+				  {% endfor %} 
+				 {% endif %}
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <h3>
+              ONLINE COLLEGE 
+            </h3>
+            <span> ASSIGNMENT</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse ml-auto px-5" id="navbarSupportedContent">
+            <ul class="navbar-nav  ml-auto">
+              <li class="nav-item  px-2">
+                <a class="nav-link " href="{% url 'index' %}">Home </a>
+              </li>
+              <li class="nav-item px-3">
+                <a class="nav-link " href="{% url 'teacher_login' %} "> Teacher</a>
+              </li>
+              <li class="nav-item active px-3 ">
+                <a class="nav-link" href="{% url 'student_login' %}"> Student </a>
+              </li>
+              <li class="nav-item px-3">
+                <a class="nav-link " href="{% url 'admin_login' %}"> Admin </a>
+              </li>
+             
+            </ul>
+              
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+  <!-- special section -->
+
+ 
+
+  <!-- end special section -->
+
+  <!-- about section -->
+
+
+  <!-- end about section -->
+
+  <!-- course section -->
+
+ 
+
+  <!-- end course section -->
+
+  <!-- login section -->
+  
+
+  <!-- end login section -->
+  <!-- event section -->
+  <section class="login_section layout_padding"  style="background-color:white;" >
+    <div class="container">
+      <div class="content-wrapper" >
+        <div class="row"  style="background-color:bue;">
+          <div class="col-md-6 pb-5" >
+            <div class="login_form">
+              <h5 style="color:white;">Student Registration</h5>
+              <form method="post" enctype="multipart/form-data" onsubmit = "return loginvalidation()"  name="myform">
+                 {% csrf_token %}
+                <div class="m-2 pr-5 pl-5 " >
+                  <input type="text" name="studentname" class="m-1" placeholder="Full Name" />
+                </div>
+                <div class="m-2 pr-5 pl-5 ">
+                  <input type="text" name="rollno" class="m-1" placeholder="Roll Number" />
+                </div>
+                <div class="m-2 pr-5 pl-5 ">
+                  <select type="text" name="course" class="form-control">
+                    <option selected hidden>select</option>
+                    {% for f in a %}
+                    <option value={{f.course_id}}>{{f.course_name}} ({{f.branch_name}})</option>
+                    {% endfor%}
+                  </select> 
+                </div>
+                <div class="m-2 pr-5 pl-5 "> 
+                  <input type="tel" name="mobileno" class="m-1" placeholder="Mobile Number" />
+                </div>
+                <div class="m-2 pr-5 pl-5 ">
+                  <input type="email" name="email" class="m-1" placeholder="Enter Email" />
+                </div>
+                <div class="m-2 pr-5 pl-5 ">
+                  <input type="password" name="password" class="m-1" placeholder="Create Password" />
+                </div>
+                {% comment %} <div class="custom-file">
+                  <input type="file" id="myfile" name="sphoto"> {% endcomment %}
+                  <div class="m-2 pr-5 pl-5 ">
+                    {% comment %} <label for="formFileSm" class="form-label">Small file input example</label> {% endcomment %}
+                    <input class="form-control form-control-sm" name="file" id="formFileSm" type="file">
+                  </div>
+                <button type="submit" class="m-2" >Sign up</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6 pb-5 grid-margin stretch-card">
+            <img src="{% static 'main/images/stu.jpg' %}" alt="login form" class="img-fluid" style=" height:400px; width:200%" />
+          </div>
+           
+        
+        </div> 
+      </div>
+    </div>
+  </section>
+          
+        {% comment %} <section class="login_section layout_padding pt-5">
+          <div class="container" >
+            
+            <div class="row justify-content-center"  >
+             
+              <div class="col-md-6 pb-5" >
+                <div class="login_form">
+                  <h5 style="color:white;">
+                    Student Registration
+                  </h5>
+                  <form method="post" enctype="multipart/form-data" onsubmit = "return loginvalidation()"  name="myform">
+                    {% csrf_token %}
+                    <div class="m-2 pr-5 pl-5 " >
+                      <input type="text" name="studentname" class="m-1" placeholder="Full Name" />
+                    </div>
+                    <div class="m-2 pr-5 pl-5 ">
+                      <input type="text" name="rollno" class="m-1" placeholder="Roll Number" />
+                    </div>
+                    <div class="m-2 pr-5 pl-5 ">
+                      <select type="text" name="course" class="form-control">
+                        <option selected hidden>course</option>
+                        {% for f in a %}
+                        <option value={{f.course_id}}>{{f.course_name}} ({{f.branch_name}})</option>
+                        {% endfor%}
+                      </select> 
+                    </div>
+                    <div class="m-2 pr-5 pl-5 "> 
+                      <input type="tel" name="mobileno" class="m-1" placeholder="Mobile Number" />
+                    </div>
+                    <div class="m-2 pr-5 pl-5 ">
+                        <input type="email" name="email" class="m-1" placeholder="Enter Email" />
+                      </div>
+                      <div class="m-2 pr-5 pl-5 ">
+                        <input type="password" name="password" class="m-1" placeholder="Create Password" />
+                      </div>
+                      <div class="custom-file">
+                        <input type="file" id="myfile" name="sphoto">
+                        
+                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                      </div>
+                     <button type="submit" class="m-2" style="background-color:black;">Sign up</button>
+                  
+
+                  </form>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </section>
+      </div>
+    </header>
+     {% endcomment %}
+    <!-- end header section -->
+    <!-- slider section -->
+   
+    <!-- end slider section -->
+
+  <!-- special section -->
+
+  <!-- info section -->
+ 
+  <section class="info_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_menu">
+            <h5>
+              QUICK LINKS
+            </h5>
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'teacher_login' %}">Teacher </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'student_login' %}"> Student </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin_login' %}"> Admin </a>
+             
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          
+        </div>
+        <div class="col-md-4 offset-md-1">
+          <div class="info_news">
+            <h5>
+              FOR ANY QUERY,WRITE TO US
+            </h5>
+            <div class="info_contact">
+              <a href="">
+                L.B Nagar,Near Metro Station
+              </a>
+              <a href="">
+                info@codebook.in
+              </a>
+              <a href="">
+                Call : +91 8555887986
+              </a>
+            </div>
+            <form >
+              <input type="email" placeholder="Enter Text" />
+              <button>
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info section -->
+
+  <!-- footer section -->
+  <footer class="container-fluid footer_section">
+    <p>
+      &copy; 2022 All Rights Reserved By
+      <a href="https://www.codebook.in/" style="color:blue;">Codebook.in</a>
+    </p>
+  
+  </footer>
+
+   
+  <footer class="container-fluid footer_section">
+  
+    
+  </footer>
+ 
+  <!-- footer section -->
+
+  <script type="text/javascript" src="{% static 'main/js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'main/js/bootstrap.js' %}"></script>
+
+</body>
+
+</html>
